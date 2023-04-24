@@ -12,14 +12,14 @@ service CatalogService {
         Currency,
         city.name as CityName,
         city,
-        task
+    
     };
 
     entity WorkAssignments as projection on mydb.WorkAssignments {     
         Id,
         Status,
         Desc,
-        Task,
+        
     };
     
     type data {
