@@ -5,6 +5,7 @@ const { Employee, WorkAssignments } = cds.entities('db');
 module.exports = cds.service.impl((srv) => {
 
     srv.before('READ', "Employee", req => {
+        debugger;
         console.log("ON Event API triggered for Employee");
     });
 
