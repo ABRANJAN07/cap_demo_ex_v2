@@ -1,0 +1,164 @@
+{
+    "_version": "1.49.0",
+    "sap.app": {
+        "id": "empappv2",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:lrop",
+            "version": "1.9.4",
+            "toolsId": "2fe08fef-7460-465c-8cea-5e299642d91e"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/catalog/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "4.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.113.0",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.fe.templates": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "empappv2.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }
+        },
+        "resources": {
+            "css": []
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "EmployeeList",
+                    "target": "EmployeeList"
+                },
+                {
+                    "pattern": "Employee({key}):?query:",
+                    "name": "EmployeeObjectPage",
+                    "target": "EmployeeObjectPage"
+                },
+                {
+                    "pattern": "Employee({key})/task({key2}):?query:",
+                    "name": "WorkAssignmentsObjectPage",
+                    "target": "WorkAssignmentsObjectPage"
+                }
+            ],
+            "targets": {
+                "EmployeeList": {
+                    "type": "Component",
+                    "id": "EmployeeList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Employee",
+                            "variantManagement": "None",
+                            "navigation": {
+                                "Employee": {
+                                    "detail": {
+                                        "route": "EmployeeObjectPage"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "EmployeeObjectPage": {
+                    "type": "Component",
+                    "id": "EmployeeObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "entitySet": "Employee",
+                            "navigation": {
+                                "task": {
+                                    "detail": {
+                                        "route": "WorkAssignmentsObjectPage"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "WorkAssignmentsObjectPage": {
+                    "type": "Component",
+                    "id": "WorkAssignmentsObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "entitySet": "WorkAssignments"
+                        }
+                    }
+                }
+            }
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {}
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    }
+}
