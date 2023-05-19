@@ -3,6 +3,7 @@ sap.ui.define(
     function (Component) {
         "use strict";
 
+        debugger;
         return Component.extend("empappv2.Component", {
             metadata: {
                 manifest: "json"
