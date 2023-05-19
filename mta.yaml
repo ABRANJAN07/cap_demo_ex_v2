@@ -34,18 +34,17 @@ modules:
     build-result: resources
     requires:
     - artifacts:
-      - empfe.zip
-      name: empfe
+      - empappv2.zip
+      name: empappv2
       target-path: resources/
-- name: empfe
+- name: empappv2
   type: html5
-  path: app/empfe
+  path: app/empappv2
   build-parameters:
     build-result: dist
     builder: custom
     commands:
     - npm install
-    - npm run build:cf
     supported-platforms: []
 resources:
 - name: cap_demo_ex_v2-db

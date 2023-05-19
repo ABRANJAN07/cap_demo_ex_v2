@@ -18,12 +18,9 @@
     },
     "scripts": {
         "start": "cds run",
-        "watch-employeeapp": "cds watch --open employeeapp/webapp/index.html?sap-ui-xx-viewCache=false",
         "undeploy": "cf undeploy cap_demo_ex_v2 --delete-services --delete-service-keys --delete-service-brokers",
         "build": "rimraf resources mta_archives && mbt build --mtar archive",
         "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
-        "watch-employeefe": "cds watch --open employeefe/webapp/index.html?sap-ui-xx-viewCache=false",
-        "watch-empfe": "cds watch --open empfe/webapp/index.html?sap-ui-xx-viewCache=false",
         "watch-empappv2": "cds watch --open empappv2/webapp/index.html?sap-ui-xx-viewCache=false"
     },
     "engines": {
@@ -66,8 +63,6 @@
     },
     "sapux": [
         "app/employeeapp",
-        "app/employeefe",
-        "app/empfe",
         "app/empappv2"
     ]
 }
