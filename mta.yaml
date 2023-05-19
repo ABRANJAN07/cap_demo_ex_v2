@@ -23,41 +23,14 @@ modules:
   - name: cap_demo_ex_v2-db
   parameters:
     buildpack: nodejs_buildpack
-- name: cap_demo_ex_v2-app-content
-  type: com.sap.application.content
-  path: .
-  requires:
-  - name: cap_demo_ex_v2-repo-host
-    parameters:
-      content-target: true
-  build-parameters:
-    build-result: resources
-    requires:
-    - artifacts:
-      - empappv2.zip
-      name: empappv2
-      target-path: resources/
-- name: empappv2
-  type: html5
-  path: app/empappv2
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    supported-platforms: []
+
 resources:
 - name: cap_demo_ex_v2-db
   type: com.sap.xs.hdi-container
   parameters:
     service: hana
     service-plan: hdi-shared
-- name: cap_demo_ex_v2-repo-host
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: html5-apps-repo
-    service-name: cap_demo_ex_v2-html5-srv
-    service-plan: app-host
+
 - name: cap_demo_ex_v2-destination-service
   type: org.cloudfoundry.managed-service
   parameters:
